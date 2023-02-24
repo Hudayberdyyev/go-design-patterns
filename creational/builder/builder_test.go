@@ -5,7 +5,13 @@ import (
 )
 
 func TestBuilderPattern(t *testing.T) {
-	manufactoringComplex := ManufacturingDirector{}
+	manufactoringComplex := GetDirectorInstance()
+	sameInstanceForTesting := GetDirectorInstance()
+
+	if manufactoringComplex != sameInstanceForTesting {
+		t.Error("expected the same instance in secondManufacturingComplex but got a different instance")
+	}
+
 	carBuilder := &CarBuilder{}
 	manufactoringComplex.SetBuilder(carBuilder)
 	manufactoringComplex.Construct()

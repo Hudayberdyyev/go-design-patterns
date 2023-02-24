@@ -1,17 +1,26 @@
 package builder
 
-type ManufacturingDirector struct {
+type manufacturingDirector struct {
 	builder BuildProcess
 }
 
-func (d *ManufacturingDirector) Construct() {
+func (d *manufacturingDirector) Construct() {
 	// Implementation goes here
 	d.builder.SetSeats().SetWheels().SetStructure()
 }
 
-func (d *ManufacturingDirector) SetBuilder(b BuildProcess) {
+func (d *manufacturingDirector) SetBuilder(b BuildProcess) {
 	// Implementation goes here
 	d.builder = b
+}
+
+var directorInstance *manufacturingDirector
+
+func GetDirectorInstance() *manufacturingDirector {
+	if directorInstance == nil {
+		directorInstance = new(manufacturingDirector)
+	}
+	return directorInstance
 }
 
 type VehicleProduct struct {
